@@ -13,6 +13,8 @@
 
 	<context:component-scan
 		base-package="com.j2ee.onlineShoppingFrontend" />
+	<context:component-scan
+		base-package="com.j2ee.onlineShoppingBackend" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -20,8 +22,9 @@
 		<property name="suffix" value=".jsp" />
 
 	</bean>
-	
+
 	<mvc:annotation-driven />
-	<mvc:resources location="/assests/" mapping="static_resources/**" />
+	<mvc:resources location="/assests/"
+		mapping="static_resources/**" />
 
 </beans>
