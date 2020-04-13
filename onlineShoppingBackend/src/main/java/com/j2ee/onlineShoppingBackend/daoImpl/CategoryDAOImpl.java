@@ -1,37 +1,73 @@
 package com.j2ee.onlineShoppingBackend.daoImpl;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.j2ee.onlineShoppingBackend.dao.CategoryDAO;
 import com.j2ee.onlineShoppingBackend.dto.Category;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO{
 
-	private static List<Category> categories = new ArrayList<Category>();
-	
-	static {
-		Category category = new Category(1, "Television", "This is description for Television", "television.png", true);
-		Category category1 = new Category(2, "Mobile", "This is description for Mobile", "mobile.png", true);
-		Category category2 = new Category(3, "Laptop", "This is description for Laptop", "laptop.png", true);
-		categories.add(category);
-		categories.add(category1);
-		categories.add(category2);
-		
-		
-	}
-	
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public List<Category> list() {
-		return categories;
+		String activeCategoryFetchQuery ="FROM Category WHERE isActive = :active";
+		Query query = sessionFactory.getCurrentSession().createQuery(activeCategoryFetchQuery);
+		query.setParameter("active", true);
+		return query.getResultList();
 	}
 
+	//getting single category based on id 
 	public Category getCategory(int id) {
-		Category category = categories.stream().filter(c-> c.getId()==id)
-				.findAny()
-				.orElse(null);
-		
-		return category;
+		return sessionFactory.getCurrentSession().get(Category.class,Integer.valueOf(id));
+	}
+
+	@Override
+	public boolean add(Category category) {
+
+		try {
+			// adding category to DB
+			sessionFactory.getCurrentSession().persist(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean update(Category category) {
+		try {
+			// updating category to DB
+			sessionFactory.getCurrentSession().update(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delete(Category category) {
+
+		category.setIsActive(false);
+
+		try {
+			// updating category to DB
+			sessionFactory.getCurrentSession().update(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
