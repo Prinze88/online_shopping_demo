@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"com.j2ee.onlineShoppingBackend.dto"})
 public class HibernateConfig {
 
-	private final static String DATABASE_URL = "jdbc:h2:D:\\Softwares\\h2\\bin/onlineshopping;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE";
+	private final static String DATABASE_URL = "jdbc:h2:/home/sterlite/prince/selfProjects/onlineshopping;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE";
 	private final static String DATABASE_DRIVER = "org.h2.Driver";
 	private final static String DATABASE_DIALECT = "org.hibernate.dialect.H2Dialect";
 	private final static String DATABASE_USERNAME = "sa";

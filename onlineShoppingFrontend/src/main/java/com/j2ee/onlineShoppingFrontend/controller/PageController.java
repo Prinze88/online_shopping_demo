@@ -19,7 +19,7 @@ public class PageController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		
-		mv.addObject("title","home");
+		mv.addObject("title","Home");
 		mv.addObject("categories",categoryDAO.list());
 		mv.addObject("userClickHome",true);
 		return mv;
@@ -60,7 +60,7 @@ public class PageController {
 	public ModelAndView showACategoryProducts(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		
-		Category category = categoryDAO.getCategory(id);
+		Category category = categoryDAO.get(id);
 		
 		mv.addObject("title",category.getName());
 		mv.addObject("categories",categoryDAO.list());

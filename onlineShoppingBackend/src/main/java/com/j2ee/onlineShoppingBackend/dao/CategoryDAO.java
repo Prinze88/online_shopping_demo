@@ -10,7 +10,7 @@ public interface CategoryDAO {
 
 	List<Category> list();
 
-	Category getCategory(int id);
+	Category get(int id);
 	
 	boolean add(Category category);
 	

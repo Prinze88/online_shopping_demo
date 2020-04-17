@@ -19,14 +19,14 @@ public class CategoryDAOImpl implements CategoryDAO{
 	private SessionFactory sessionFactory;
 
 	public List<Category> list() {
-		String activeCategoryFetchQuery ="FROM Category WHERE isActive = :active";
+		String activeCategoryFetchQuery ="FROM Category WHERE active = :active";
 		Query query = sessionFactory.getCurrentSession().createQuery(activeCategoryFetchQuery);
 		query.setParameter("active", true);
 		return query.getResultList();
 	}
 
 	//getting single category based on id 
-	public Category getCategory(int id) {
+	public Category get(int id) {
 		return sessionFactory.getCurrentSession().get(Category.class,Integer.valueOf(id));
 	}
 
@@ -58,7 +58,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	@Override
 	public boolean delete(Category category) {
 
-		category.setIsActive(false);
+		category.setActive(false);
 
 		try {
 			// updating category to DB

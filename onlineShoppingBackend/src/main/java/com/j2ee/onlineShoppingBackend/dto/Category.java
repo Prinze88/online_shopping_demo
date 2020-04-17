@@ -19,15 +19,15 @@ public class Category {
 	private String imageUrl;
 	
 	@Column(name = "is_active")
-	private Boolean isActive= true;
+	private Boolean active= true;
 	
 	
-	public Category(int id, String name, String description, String imageUrl, Boolean isActive) {
+	public Category(int id, String name, String description, String imageUrl, Boolean active) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.imageUrl = imageUrl;
-		this.isActive = isActive;
+		this.active = active;
 	}
 	
 	
@@ -35,11 +35,11 @@ public class Category {
 	}
 
 
-	public Category(String name, String description, String imageUrl, Boolean isActive) {
+	public Category(String name, String description, String imageUrl, Boolean active) {
 		this.name = name;
 		this.description = description;
 		this.imageUrl = imageUrl;
-		this.isActive = isActive;
+		this.active = active;
 	}
 
 
@@ -67,19 +67,25 @@ public class Category {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public Boolean getIsActive() {
-		return isActive;
+
+
+	public Boolean getActive() {
+		return active;
 	}
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
-				+ ", isActive=" + isActive + "]";
+				+ ", active=" + active + "]";
 	}
+	
+	
 
 	
 	
