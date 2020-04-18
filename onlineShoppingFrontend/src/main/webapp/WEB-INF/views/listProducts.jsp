@@ -4,6 +4,10 @@
 		<div class="col-md-3">
 			<%@include file="./shared/sidebar.jsp"%>
 		</div>
+		
+		
+		
+		
 		<!-- To display products -->
 		<div class="col-md-9">
 			<!-- Added for breadcrumb -->
@@ -28,6 +32,22 @@
 
 				</div>
 			</div>
+		
+			<div class="row">
+				<div class="col-xs-12">
+				<table id=productListTable class="table table-striped table-borderd">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							
+						</tr>
+					</thead>
+				
+				</table>
+				</div>
+			</div>
+		
 		</div>
 
 	</div>
